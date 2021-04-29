@@ -13,7 +13,6 @@
 // For projects created with v87 onwards, JavaScript is always executed in strict mode.
 //==============================================================================
 
-// How to load in modules
 const Scene = require('Scene');
 const Reactive = require('Reactive');
 const Animation = require('Animation');
@@ -24,17 +23,6 @@ const TouchGestures = require('TouchGestures');
 const FaceTracking = require('FaceTracking');
 const FaceGestures = require('FaceGestures');
 const CameraInfo = require('CameraInfo');
-
-// Use import keyword to import a symbol from another file
-// import { animationDuration } from './script.js'
-
-// Materials and Textures
-// const dynoDefaultMaterial = Materials.get('dyno_default');
-// const dyno1Material = Materials.get('dyno_1');
-// const dyno2Material = Materials.get('dyno_2');
-// const dynoFinalMaterial = Materials.get('dyno_final');
-// const bird1Material = Materials.get('bird_1');
-// const bird2Material = Materials.get('bird_2');
 
 const face = FaceTracking.face(0);
 const groundHeight = 190;
@@ -345,23 +333,15 @@ Materials.findFirst('dyno_default').then(dynoDefaultMaterial => {
                                               }
                                             };
                                             FaceGestures.hasLeftEyeClosed(face, {threshold: 0.5, backlash: 0.1}).monitor().subscribe(() => {
-                                              if (!isPlaying && allowedStartGameByBlink) {
-                                                // runGame();
-                                              }
                                               jump();
                                             });
                                             FaceGestures.hasRightEyeClosed(face, {threshold: 0.5, backlash: 0.1}).monitor().subscribe(() => {
-                                              if (!isPlaying && allowedStartGameByBlink) {
-                                                // runGame();
-                                                
-                                              }
                                               jump();
                                             });
                                             TouchGestures.onTap().subscribe(() => {
                                               if (!isPlaying && firstGameStart) {
                                                 runGame();
                                               }
-                                              // isPlaying = true;
                                               jump();
                                             });
                                             CameraInfo.isRecordingVideo.monitor().subscribe(() => {
